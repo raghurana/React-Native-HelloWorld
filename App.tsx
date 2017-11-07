@@ -1,52 +1,36 @@
 import * as React from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  ListView
-} from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import TodoTask from './todoApp/entities/todoTask';
 
-export default class App extends React.Component<object, object> {
+interface State {
+  todos: TodoTask[];
+}
+
+export default class App extends React.Component<any, State> {
+
+  constructor() {
+    super();
+
+    this.state = {
+      todos:
+        [
+          new TodoTask('Learn React Native'),
+        ],
+      };
+  }
+
   public render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Natives from TypeScript !
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+      <Text style={styles.container}>
+        {this.state.todos[0].taskName}
+      </Text>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    paddingTop: 40,
   },
 });
