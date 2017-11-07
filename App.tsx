@@ -1,15 +1,10 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component } from 'react';
+import * as React from 'react';
 import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  ListView
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -19,12 +14,12 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component<{}> {
-  render() {
+export default class App extends React.Component<object, object> {
+  public render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native !
+          Welcome to React Natives from TypeScript !
         </Text>
         <Text style={styles.instructions}>
           To get started, edit App.js
