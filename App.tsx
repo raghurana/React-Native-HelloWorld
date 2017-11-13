@@ -12,7 +12,8 @@ export default class App extends React.Component<any, TodoDataSource> {
     this.state = {
       todos:
         [
-          new TodoTask('Learn React Native'),
+          new TodoTask('Learn React Native 1'),
+          new TodoTask('Learn React Native 2'),
         ],
       };
   }

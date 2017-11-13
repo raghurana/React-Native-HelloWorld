@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ListView, ListViewDataSource } from 'react-native';
 
 import { TodoDataSource, TodoTask } from 'todoApp/entities/TodoTask';
 
@@ -9,18 +9,32 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class TaskList extends React.Component<TodoDataSource, TodoDataSource> {
+export default class TaskList extends React.Component<TodoDataSource, any> {
 
     constructor(props: TodoDataSource, context) {
         super(props, context);
-        this.state = { todos: props.todos };
+
+        const ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2,
+        });
+
+        this.state = {dataSource: ds.cloneWithRows(props.todos)};
     }
 
     public render() {
         return (
             <View style={styles.container}>
-                <Text>TaskList Component {this.state.todos[0].taskName}</Text>
+                <ListView
+                    dataSource={this.state.dataSource}
+                    renderRow={this.renderRow}
+                />
             </View>
+        );
+    }
+
+    private renderRow(task: TodoTask) {
+        return(
+            <Text>{task.taskName}</Text>
         );
     }
 }
