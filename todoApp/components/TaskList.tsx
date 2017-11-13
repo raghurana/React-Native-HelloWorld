@@ -9,7 +9,11 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class TaskList extends React.Component<TodoDataSource, any> {
+interface State {
+    dataSource: ListViewDataSource;
+}
+
+export default class TaskList extends React.Component<TodoDataSource, State> {
 
     constructor(props: TodoDataSource, context) {
         super(props, context);
@@ -18,7 +22,7 @@ export default class TaskList extends React.Component<TodoDataSource, any> {
             rowHasChanged: (r1, r2) => r1 !== r2,
         });
 
-        this.state = {dataSource: ds.cloneWithRows(props.todos)};
+        this.state = { dataSource: ds.cloneWithRows(props.todos) };
     }
 
     public render() {
