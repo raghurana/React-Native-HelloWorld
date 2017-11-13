@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-import TodoTask from './todoApp/entities/TodoTask';
+import { TodoDataSource, TodoTask } from './todoApp/entities/TodoTask';
 import TaskList from './todoApp/components/TaskList';
 
-interface State {
-  todos: TodoTask[];
-}
-
-export default class App extends React.Component<any, State> {
+export default class App extends React.Component<any, TodoDataSource> {
 
   constructor() {
     super();
@@ -23,7 +19,7 @@ export default class App extends React.Component<any, State> {
 
   public render() {
     return (
-      <TaskList />
+      <TaskList todos={this.state.todos} />
     );
   }
 }

@@ -1,5 +1,9 @@
 
-export default class TodoTask {
+interface TodoDataSource {
+    todos: TodoTask[];
+}
+
+class TodoTask {
 
     public taskName: string;
 
@@ -8,3 +12,5 @@ export default class TodoTask {
     }
 
 }
+
+export { TodoTask, TodoDataSource };
